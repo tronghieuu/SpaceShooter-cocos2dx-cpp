@@ -15,9 +15,12 @@ bool LoadingScene::init()
 		return false;
 	}
 
-	auto child = ResourceManager::GetInstance()->GetSpriteById(0);
-	child->setPosition(Vec2(50, 50));
-	this->addChild(child);
+	auto visibleSize = Director::getInstance()->getVisibleSize();
+
+	auto background = ResourceManager::GetInstance()->GetSpriteById(0);
+	background->setScale(visibleSize.width / background->getContentSize().width, visibleSize.height / background->getContentSize().height);
+	background->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
+	addChild(background, 0);
 
 	return true;
 }

@@ -25,58 +25,58 @@ ResourceManager::~ResourceManager()
 void ResourceManager::Init(const std::string &path)
 {
 	m_dataFolderPath = path;
-	Load(m_dataFolderPath+"Data.bin");
+	Load("Data.bin");
 }
 
 void ResourceManager::Load(std::string fileName)
 {
 	int amount;
 	int id;
-	std::string tempStr1, tempStr2, tempStr3; //Using for temporary store data from file
+	std::string tempStr1, tempStr2; //Using for temporary store data from file
 	std::ifstream readingFile;
-	readingFile.open(fileName);
+	readingFile.open(m_dataFolderPath+fileName);
 	if (readingFile.is_open())
 	{
 		//Load Sprite resource
-		getline(readingFile, tempStr1);
-		amount = std::stoi(tempStr1.erase(0, strlen("#SPRITE ")));
+		readingFile >> tempStr1 >> tempStr1;
+		amount = std::stoi(tempStr1);
 		for (int i = 0; i < amount; i++)
 		{
-			getline(readingFile, tempStr1);
-			id = std::stoi(tempStr1.erase(0, strlen("ID: ")));
-			getline(readingFile, tempStr2);
-			tempStr2.erase(0, strlen("PATH: "));
-			tempStr2.replace(0, 2, "res");
-			m_sprites.insert(std::pair<int, Sprite*>(id, Sprite::create(tempStr2)));
+			readingFile >> tempStr1 >> tempStr1;
+			id = std::stoi(tempStr1);
+			readingFile >> tempStr1 >> tempStr1;
+			tempStr1.replace(0, 2, "res");
+			m_sprites.insert(std::pair<int, Sprite*>(id, Sprite::create(tempStr1)));
 		}
 		//Load Button resource
-		getline(readingFile, tempStr1);
-		amount = std::stoi(tempStr1.erase(0, strlen("#BUTTON ")));
+		readingFile >> tempStr1 >> tempStr1;
+		amount = std::stoi(tempStr1);
 		for (int i = 0; i < amount; i++)
 		{
-			getline(readingFile, tempStr1);
-			id = std::stoi(tempStr1.erase(0, strlen("ID: ")));;
-			getline(readingFile, tempStr2);
-			tempStr2.erase(0, strlen("NORMAL_PATH: "));
+			readingFile >> tempStr1 >> tempStr1;
+			id = std::stoi(tempStr1);
+			readingFile >> tempStr1 >> tempStr1;
+			tempStr1.replace(0, 2, "res");
+			readingFile >> tempStr2 >> tempStr2;
 			tempStr2.replace(0, 2, "res");
-			getline(readingFile, tempStr3);
-			tempStr3.erase(0, strlen("PRESSED_PATH: "));
-			tempStr3.replace(0, 2, "res");
-			m_buttons.insert(std::pair<int, ui::Button*>(id, ui::Button::create(tempStr2, tempStr3)));
+			m_buttons.insert(std::pair<int, ui::Button*>(id, ui::Button::create(tempStr1, tempStr2)));
 		}
 		//Load Font resource
-		getline(readingFile, tempStr1);
-		amount = std::stoi(tempStr1.erase(0, strlen("#FONT ")));
+		readingFile >> tempStr1 >> tempStr1;
+		amount = std::stoi(tempStr1);
 		for (int i = 0; i < amount; i++)
 		{
-			getline(readingFile, tempStr1);
-			id = std::stoi(tempStr1.erase(0, strlen("ID: ")));
-			getline(readingFile, tempStr2);
-			tempStr2.erase(0, strlen("PATH: "));
-			tempStr2.replace(0, 2, "res");
-			m_labels.insert(std::pair<int, Label*>(id, Label::createWithTTF("sdfsd", tempStr2, 3)));
+			readingFile >> tempStr1 >> tempStr1;
+			id = std::stoi(tempStr1);
+			readingFile >> tempStr1 >> tempStr1;
+			tempStr1.replace(0, 2, "res");
+			m_labels.insert(std::pair<int, Label*>(id, Label::createWithTTF("", tempStr1, 20)));
 		}
 		readingFile.close();
+	}
+	else
+	{
+		log("error");
 	}
 }
 
