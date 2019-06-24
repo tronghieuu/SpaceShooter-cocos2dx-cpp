@@ -23,6 +23,7 @@
     </ClCompile>
     <ClCompile Include="..\Classes\LoadingScene.cpp" />
     <ClCompile Include="..\Classes\ResourceManager.cpp" />
+    <ClCompile Include="..\Classes\MainMenuScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -36,6 +37,7 @@
     </ClInclude>
     <ClInclude Include="..\Classes\LoadingScene.h" />
     <ClInclude Include="..\Classes\ResourceManager.h" />
+    <ClInclude Include="..\Classes\MainMenuScene.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">
