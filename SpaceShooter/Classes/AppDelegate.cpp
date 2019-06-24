@@ -24,6 +24,7 @@
 
 #include "AppDelegate.h"
 #include "LoadingScene.h"
+#include "ResourceManager.h"
 
 // #define USE_AUDIO_ENGINE 1
 // #define USE_SIMPLE_AUDIO_ENGINE 1
@@ -97,6 +98,9 @@ bool AppDelegate::applicationDidFinishLaunching() {
     glview->setDesignResolutionSize(designResolutionSize.width, designResolutionSize.height, ResolutionPolicy::NO_BORDER);
     
     register_all_packages();
+
+	// Load all resource
+	ResourceManager::GetInstance()->Init("res/");
 
     // create a scene. it's an autorelease object
     auto scene = LoadingScene::CreateScene();

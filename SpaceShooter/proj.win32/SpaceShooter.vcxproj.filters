@@ -21,6 +21,8 @@
     <ClCompile Include="..\Classes\HelloWorldScene.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\LoadingScene.cpp" />
+    <ClCompile Include="..\Classes\ResourceManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -32,6 +34,8 @@
     <ClInclude Include="..\Classes\HelloWorldScene.h">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\LoadingScene.h" />
+    <ClInclude Include="..\Classes\ResourceManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">
