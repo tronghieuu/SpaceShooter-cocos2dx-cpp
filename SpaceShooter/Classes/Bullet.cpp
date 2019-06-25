@@ -2,6 +2,11 @@
 
 USING_NS_CC;
 
+Bullet::Bullet()
+{
+
+}
+
 Bullet::Bullet(Scene* scene)
 {
 

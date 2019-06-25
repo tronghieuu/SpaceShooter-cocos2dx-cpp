@@ -7,6 +7,7 @@
 class Bullet :public MyObject
 {
 public:
+	Bullet();
 	Bullet(cocos2d::Scene* scene);
 	~Bullet();
 	void Init();
