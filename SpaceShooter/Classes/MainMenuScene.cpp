@@ -1,5 +1,6 @@
 #include "MainMenuScene.h"
 #include "ResourceManager.h"
+#include "GamePlayScene.h"
 
 USING_NS_CC;
 
@@ -35,6 +36,12 @@ bool MainMenuScene::init()
 	playButton->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 3));
 	playButton->removeFromParent();
 	addChild(playButton, 0);
+	playButton->addClickEventListener([&](Ref* event) {
+		auto gotoNextScene = CallFunc::create([] {
+			Director::getInstance()->replaceScene(GamePlayScene::CreateScene());
+		});
+		runAction(gotoNextScene);
+	});
 
 	return true;
 }
