@@ -24,7 +24,7 @@ SpaceShip::SpaceShip(Scene* scene)
 
 SpaceShip::~SpaceShip()
 {
-
+	//Delete something
 }
 
 void SpaceShip::Init()

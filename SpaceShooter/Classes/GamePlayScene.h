@@ -17,9 +17,9 @@ public:
 	virtual bool init();
 	void update(float deltaTime);
 	void GenerateRock();
-	/*bool onTouchBegan(Touch* t, Event* e);
-	bool onTouchEnded(Touch* t, Event* e);
-	void onTouchMoved(Touch* t, Event* e);*/
+	bool onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event);
+	bool onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event);
+	void onTouchMoved(cocos2d::Touch* touch, cocos2d::Event* event);
 
 	CREATE_FUNC(GamePlayScene);
 };

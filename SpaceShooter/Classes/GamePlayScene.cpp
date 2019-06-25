@@ -33,11 +33,11 @@ bool GamePlayScene::init()
 	background->removeFromParent();
 	addChild(background, 0);
 
-	/*auto listener = EventListenerTouchOneByOne::create();
+	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = CC_CALLBACK_2(GamePlayScene::onTouchBegan, this);
 	listener->onTouchEnded = CC_CALLBACK_2(GamePlayScene::onTouchEnded, this);
 	listener->onTouchMoved = CC_CALLBACK_2(GamePlayScene::onTouchMoved, this);
-	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);*/
+	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 	m_spaceship = new SpaceShip(this);
 	m_spaceship->GetSprite()->setPosition(visibleSize.width / 2, m_spaceship->GetSprite()->getBoundingBox().size.height);
 
@@ -81,17 +81,19 @@ void GamePlayScene::GenerateRock()
 	}
 }
 
-//bool GamePlayScene::onTouchBegan(Touch* t, Event* e)
-//{
-//	log("began");
-//}
-//
-//bool GamePlayScene::onTouchEnded(Touch*, Event*)
-//{
-//	log("ended");
-//}
-//
-//void GamePlayScene::onTouchMoved(Touch*, Event*)
-//{
-//	log(moved);
-//}
+bool GamePlayScene::onTouchBegan(Touch* touch, Event* event)
+{
+	m_spaceship->GetSprite()->setPosition(touch->getLocation());
+	return true;
+}
+
+bool GamePlayScene::onTouchEnded(Touch* touch, Event* event)
+{
+	m_spaceship->GetSprite()->setPosition(touch->getLocation());
+	return true;
+}
+
+void GamePlayScene::onTouchMoved(Touch* touch, Event* event)
+{
+	m_spaceship->GetSprite()->setPosition(touch->getLocation());
+}
