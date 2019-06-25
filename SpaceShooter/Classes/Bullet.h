@@ -6,6 +6,8 @@
 
 class Bullet :public MyObject
 {
+private:
+	int speed;
 public:
 	Bullet();
 	Bullet(cocos2d::Scene* scene);
