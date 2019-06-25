@@ -29,7 +29,6 @@ void Rock::Init()
 
 void Rock::Update(float deltaTime)
 {
-
 	if (m_sprite->isVisible() && m_sprite->getPositionY() + m_sprite->getBoundingBox().size.height >= 0)
 	{
 		m_sprite->setPositionY(m_sprite->getPositionY() - (speed + deltaTime));

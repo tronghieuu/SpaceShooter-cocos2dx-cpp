@@ -10,7 +10,7 @@ class SpaceShip :public MyObject
 {
 private:
 	std::list<MyObject*> m_bullets;
-	int timeCount;
+	float timeCount;
 public:
 	SpaceShip();
 	SpaceShip(cocos2d::Scene* scene);

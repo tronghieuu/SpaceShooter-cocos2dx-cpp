@@ -16,10 +16,10 @@ SpaceShip::SpaceShip(Scene* scene)
 	Init();
 	for (int i = 0; i < 20; i++)
 	{
-		MyObject* obj = new Bullet(scene);
-		m_bullets.push_back(obj);
+		m_bullets.push_back((MyObject*) new Bullet(scene));
 	}
-	scene->addChild(m_sprite, 6);
+	m_sprite->removeFromParent();
+	scene->addChild(m_sprite, 4);
 }
 
 SpaceShip::~SpaceShip()
@@ -34,14 +34,11 @@ void SpaceShip::Init()
 
 void SpaceShip::Update(float deltaTime)
 {
+	timeCount += deltaTime;
 	if (timeCount >= 0.3)
 	{
 		Shoot();
 		timeCount = 0;
-	}
-	else
-	{
-		timeCount += deltaTime;
 	}
 	for (std::list<MyObject*>::iterator i = m_bullets.begin(); i != m_bullets.end(); i++)
 	{

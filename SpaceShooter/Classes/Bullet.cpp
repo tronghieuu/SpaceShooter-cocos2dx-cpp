@@ -12,7 +12,7 @@ Bullet::Bullet(Scene* scene)
 {
 	speed = 5;
 	Init();
-	scene->addChild(m_sprite, 5);
+	scene->addChild(m_sprite, 8);
 }
 
 Bullet::~Bullet()
@@ -29,7 +29,8 @@ void Bullet::Init()
 
 void Bullet::Update(float deltaTime)
 {
-	if (m_sprite->isVisible() && m_sprite->getPositionY() <= 1000)
+	auto visibleSize = Director::getInstance()->getVisibleSize();
+	if (m_sprite->isVisible() && m_sprite->getPositionY() <= visibleSize.height)
 	{
 		m_sprite->setPositionY(m_sprite->getPositionY() + deltaTime + speed);
 	}
