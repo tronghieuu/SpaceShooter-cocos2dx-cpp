@@ -29,8 +29,22 @@ void Bullet::Init()
 
 void Bullet::Update(float deltaTime)
 {
-	if (m_sprite->isVisible())
+	if (m_sprite->isVisible() && m_sprite->getPositionY() <= 1000)
 	{
 		m_sprite->setPositionY(m_sprite->getPositionY() + deltaTime + speed);
 	}
+	else
+	{
+		m_sprite->setVisible(false);
+	}
+}
+
+bool Bullet::isVisible()
+{
+	return m_sprite->isVisible();
+}
+
+void Bullet::setVisible(bool b)
+{
+	m_sprite->setVisible(b);
 }

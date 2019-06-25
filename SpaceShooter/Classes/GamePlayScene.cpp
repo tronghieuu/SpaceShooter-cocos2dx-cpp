@@ -30,6 +30,8 @@ bool GamePlayScene::init()
 	background->removeFromParent();
 	addChild(background, 0);
 
+	m_spaceship = new SpaceShip(this);
+
 	scheduleUpdate();
 
 	return true;
@@ -53,6 +55,7 @@ void GamePlayScene::update(float deltaTime)
 			m_rocks[i]->Update(deltaTime);
 		}
 	}
+	m_spaceship->Update(deltaTime);
 }
 
 void GamePlayScene::GenerateRock()
