@@ -1,5 +1,7 @@
 #include "SpaceShip.h"
 #include "ResourceManager.h"
+#include "MyObject.h"
+#include "Bullet.h"
 
 USING_NS_CC;
 
@@ -14,7 +16,8 @@ SpaceShip::SpaceShip(Scene* scene)
 	Init();
 	for (int i = 0; i < 20; i++)
 	{
-		m_bullets.push_back(new Bullet(scene));
+		MyObject* obj = new Bullet(scene);
+		m_bullets.push_back(obj);
 	}
 	scene->addChild(m_sprite, 6);
 }
@@ -40,9 +43,9 @@ void SpaceShip::Update(float deltaTime)
 	{
 		timeCount += deltaTime;
 	}
-	for (std::list<Bullet*>::iterator i = m_bullets.begin(); i != m_bullets.end(); i++)
+	for (std::list<MyObject*>::iterator i = m_bullets.begin(); i != m_bullets.end(); i++)
 	{
-		if ((*i)->isVisible())
+		if ((*i)->GetSprite()->isVisible())
 		{
 			(*i)->Update(deltaTime);
 		}
@@ -51,12 +54,12 @@ void SpaceShip::Update(float deltaTime)
 
 void SpaceShip::Shoot()
 {
-	for (std::list<Bullet*>::iterator i = m_bullets.begin(); i != m_bullets.end(); i++)
+	for (std::list<MyObject*>::iterator i = m_bullets.begin(); i != m_bullets.end(); i++)
 	{
-		if (!(*i)->isVisible())
+		if (!(*i)->GetSprite()->isVisible())
 		{
-			(*i)->setVisible(true);
-			(*i)->setPosition(m_sprite->getPositionX(), m_sprite->getPositionY());
+			(*i)->GetSprite()->setVisible(true);
+			(*i)->GetSprite()->setPosition(m_sprite->getPositionX(), m_sprite->getPositionY());
 			break;
 		}
 	}

@@ -1,5 +1,7 @@
 #include "GamePlayScene.h"
 #include "ResourceManager.h"
+#include "Rock.h"
+#include "SpaceShip.h"
 
 USING_NS_CC;
 
@@ -20,7 +22,8 @@ bool GamePlayScene::init()
 
 	for (int i = 0; i < 15; i++)
 	{
-		m_rocks.push_back(new Rock(this));
+		
+		m_rocks.push_back((MyObject*) new Rock(this));
 	}
 
 	//Add background
@@ -30,7 +33,13 @@ bool GamePlayScene::init()
 	background->removeFromParent();
 	addChild(background, 0);
 
+	/*auto listener = EventListenerTouchOneByOne::create();
+	listener->onTouchBegan = CC_CALLBACK_2(GamePlayScene::onTouchBegan, this);
+	listener->onTouchEnded = CC_CALLBACK_2(GamePlayScene::onTouchEnded, this);
+	listener->onTouchMoved = CC_CALLBACK_2(GamePlayScene::onTouchMoved, this);
+	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);*/
 	m_spaceship = new SpaceShip(this);
+	m_spaceship->GetSprite()->setPosition(visibleSize.width / 2, 0);
 
 	scheduleUpdate();
 
@@ -50,7 +59,7 @@ void GamePlayScene::update(float deltaTime)
 	}
 	for (int i = 0; i < m_rocks.size(); i++)
 	{
-		if (m_rocks[i]->isVisible())
+		if (m_rocks[i]->GetSprite()->isVisible())
 		{
 			m_rocks[i]->Update(deltaTime);
 		}
@@ -63,10 +72,26 @@ void GamePlayScene::GenerateRock()
 	auto visibleSize = Director::getInstance()->getVisibleSize();
 	for (int i = 0; i < m_rocks.size(); i++)
 	{
-		if (!m_rocks[i]->isVisible())
+		if (!m_rocks[i]->GetSprite()->isVisible())
 		{
-			m_rocks[i]->setPosition(random(0, (int)visibleSize.width), visibleSize.height);
+			m_rocks[i]->GetSprite()->setVisible(true);
+			m_rocks[i]->GetSprite()->setPosition(random(0, (int)visibleSize.width), visibleSize.height);
 			break;
 		}
 	}
 }
+
+//bool GamePlayScene::onTouchBegan(Touch* t, Event* e)
+//{
+//	log("began");
+//}
+//
+//bool GamePlayScene::onTouchEnded(Touch*, Event*)
+//{
+//	log("ended");
+//}
+//
+//void GamePlayScene::onTouchMoved(Touch*, Event*)
+//{
+//	log(moved);
+//}

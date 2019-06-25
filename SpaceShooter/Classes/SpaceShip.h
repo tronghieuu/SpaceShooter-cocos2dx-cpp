@@ -2,8 +2,6 @@
 #define SPACE_SHIP_H
 
 #include "MyObject.h"
-#include "Bullet.h"
-#include "Rock.h"
 #include "cocos2d.h"
 #include <list>
 #include <vector>
@@ -11,7 +9,7 @@
 class SpaceShip :public MyObject
 {
 private:
-	std::list<Bullet*> m_bullets;
+	std::list<MyObject*> m_bullets;
 	int timeCount;
 public:
 	SpaceShip();
@@ -20,7 +18,7 @@ public:
 	void Init();
 	void Update(float deltaTime);
 	void Shoot();
-	void Collision(std::vector<Rock*>);
+	void Collision(std::vector<MyObject*>);
 };
 
 #endif

@@ -39,19 +39,3 @@ void Rock::Update(float deltaTime)
 		m_sprite->setVisible(false);
 	}
 }
-
-bool Rock::isVisible()
-{
-	return m_sprite->isVisible();
-}
-
-void Rock::setPosition(float x, float y)
-{
-	m_sprite->setVisible(true);
-	m_sprite->setPosition(Vec2(x, y));
-}
-
-void Rock::setVisible(bool b)
-{
-	m_sprite->setVisible(b);
-}

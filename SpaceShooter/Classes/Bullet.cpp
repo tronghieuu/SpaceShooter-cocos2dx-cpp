@@ -38,13 +38,3 @@ void Bullet::Update(float deltaTime)
 		m_sprite->setVisible(false);
 	}
 }
-
-bool Bullet::isVisible()
-{
-	return m_sprite->isVisible();
-}
-
-void Bullet::setVisible(bool b)
-{
-	m_sprite->setVisible(b);
-}

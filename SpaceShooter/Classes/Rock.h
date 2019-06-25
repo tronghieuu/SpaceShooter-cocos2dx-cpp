@@ -14,9 +14,6 @@ public:
 	~Rock();
 	void Init();
 	void Update(float deltaTime);
-	bool isVisible();
-	void setPosition(float x, float y);
-	void setVisible(bool b);
 };
 
 #endif

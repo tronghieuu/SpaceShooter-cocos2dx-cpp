@@ -12,6 +12,7 @@ public:
 	virtual ~MyObject();
 	virtual void Init() = 0;
 	virtual void Update(float deltaTime) = 0;
+	virtual cocos2d::Sprite* GetSprite();
 };
 
 #endif

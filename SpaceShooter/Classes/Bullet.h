@@ -14,9 +14,6 @@ public:
 	~Bullet();
 	void Init();
 	void Update(float deltaTime);
-	bool isVisible();
-	void setVisible(bool b);
-	void setPosition(float x, float y);
 };
 
 #endif
