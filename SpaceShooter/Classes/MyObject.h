@@ -11,7 +11,7 @@ public:
 	MyObject();
 	virtual ~MyObject();
 	virtual void Init() = 0;
-	virtual void Update() = 0;
+	virtual void Update(float deltaTime) = 0;
 };
 
 #endif
