@@ -12,6 +12,7 @@ public:
 
 	CREATE_FUNC(LoadingScene);
 private:
+	float timeCount;
 	cocos2d::Sprite* progressSprite;
 	cocos2d::Sprite* loadingSprite;
 };
