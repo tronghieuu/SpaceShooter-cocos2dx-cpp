@@ -33,7 +33,7 @@ bool LoadingScene::init()
 	addChild(loadingLabel, 1);
 	
 	//Add loading frame
-	loadingSprite = ResourceManager::GetInstance()->GetSpriteById(5);
+	auto loadingSprite = ResourceManager::GetInstance()->GetSpriteById(5);
 	loadingSprite->setPosition(visibleSize.width / 2, visibleSize.height/2.4);
 	loadingSprite->removeFromParent();
 	addChild(loadingSprite, 3);

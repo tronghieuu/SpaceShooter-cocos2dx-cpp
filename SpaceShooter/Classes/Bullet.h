@@ -7,13 +7,13 @@
 class Bullet :public MyObject
 {
 private:
-	int speed;
+	int speed;                      //Speed of Bullet
 public:
 	Bullet();
 	Bullet(cocos2d::Scene* scene);
 	~Bullet();
-	void Init();
-	void Update(float deltaTime);
+	void Init();                    //Init bullet sprite, set visible false, call in constructor
+	void Update(float deltaTime);   //Handle moving bullets that are visible, set false visible for bullet out of range
 };
 
 #endif

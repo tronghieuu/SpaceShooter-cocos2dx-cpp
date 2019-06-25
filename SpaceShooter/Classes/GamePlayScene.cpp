@@ -40,8 +40,9 @@ bool GamePlayScene::init()
 	listener->onTouchEnded = CC_CALLBACK_2(GamePlayScene::onTouchEnded, this);
 	listener->onTouchMoved = CC_CALLBACK_2(GamePlayScene::onTouchMoved, this);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
+
+	//Add spaceship sprite
 	m_spaceship = new SpaceShip(this);
-	m_spaceship->GetSprite()->setPosition(visibleSize.width / 2, m_spaceship->GetSprite()->getBoundingBox().size.height);
 
 	scheduleUpdate();
 

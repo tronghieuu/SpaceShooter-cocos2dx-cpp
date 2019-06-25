@@ -30,8 +30,8 @@ void ResourceManager::Init(const std::string &path)
 
 void ResourceManager::Load(std::string fileName)
 {
-	int amount;
-	int id;
+	int amount;                     //To get amount of resource
+	int id;                         //To store id of sprite, button or font temporarilly
 	std::string tempStr1, tempStr2; //Using for temporary store data from file
 	std::ifstream readingFile;
 	readingFile.open(m_dataFolderPath+fileName);

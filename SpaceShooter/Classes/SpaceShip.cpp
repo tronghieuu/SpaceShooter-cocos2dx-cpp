@@ -30,6 +30,8 @@ SpaceShip::~SpaceShip()
 void SpaceShip::Init()
 {
 	m_sprite = ResourceManager::GetInstance()->GetSpriteById(4);
+	m_sprite->setAnchorPoint(Vec2(0.5, 1));
+	m_sprite->setPosition(Director::getInstance()->getVisibleSize().width / 2, m_sprite->getBoundingBox().size.height);
 }
 
 void SpaceShip::Update(float deltaTime)
@@ -56,7 +58,7 @@ void SpaceShip::Shoot()
 		if (!(*i)->GetSprite()->isVisible())
 		{
 			(*i)->GetSprite()->setVisible(true);
-			(*i)->GetSprite()->setPosition(m_sprite->getPositionX(), m_sprite->getPositionY());
+			(*i)->GetSprite()->setPosition(m_sprite->getPosition());
 			break;
 		}
 	}
@@ -66,11 +68,13 @@ void SpaceShip::Collision(std::vector<MyObject*> rock)
 {
 	for (int i = 0; i < rock.size(); i++)
 	{
+		//Check spaceship hit rock
 		if (m_sprite->getBoundingBox().intersectsRect(rock[i]->GetSprite()->getBoundingBox()))
 		{
 			m_sprite->setVisible(false);
 			break;
 		}
+		//Check bullet hit rock
 		for (std::list<MyObject*>::iterator j = m_bullets.begin(); j != m_bullets.end(); j++)
 		{
 			if ((*j)->GetSprite()->getBoundingBox().intersectsRect(rock[i]->GetSprite()->getBoundingBox()))

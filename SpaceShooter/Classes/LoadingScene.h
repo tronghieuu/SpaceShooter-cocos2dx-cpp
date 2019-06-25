@@ -12,9 +12,8 @@ public:
 
 	CREATE_FUNC(LoadingScene);
 private:
-	float timeCount;
-	cocos2d::Sprite* progressSprite;
-	cocos2d::Sprite* loadingSprite;
+	float timeCount;                 //Couting time to go to next scene through deltaTime
+	cocos2d::Sprite* progressSprite; //Declare to can be adjusting in update method
 };
 
 #endif
