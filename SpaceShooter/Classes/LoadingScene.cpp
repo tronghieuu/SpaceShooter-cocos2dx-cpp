@@ -44,6 +44,7 @@ bool LoadingScene::init()
 	progressSprite->setAnchorPoint(Vec2(0, 0.5));
 	progressSprite->removeFromParent();
 	addChild(progressSprite, -2);
+	
 	scheduleUpdate();
 
 	return true;
@@ -51,16 +52,8 @@ bool LoadingScene::init()
 
 void LoadingScene::update(float deltaTime)
 {
-	auto size = progressSprite->getBoundingBox().size.width;
-	if (loadingSprite->getBoundingBox().size.width == size)
-	{
-		auto gotoNextScene = CallFunc::create([] {
-			Director::getInstance()->replaceScene(MainMenuScene::CreateScene());
-		});
-		runAction(gotoNextScene);
-	}
-	else
-	{
-		
-	}
+	auto gotoNextScene = CallFunc::create([] {
+		Director::getInstance()->replaceScene(MainMenuScene::CreateScene());
+	});
+	runAction(gotoNextScene);
 }

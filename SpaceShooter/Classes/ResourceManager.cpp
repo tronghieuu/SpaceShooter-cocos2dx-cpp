@@ -47,6 +47,7 @@ void ResourceManager::Load(std::string fileName)
 			readingFile >> tempStr1 >> tempStr1;
 			tempStr1.replace(0, 2, "res");
 			m_sprites.insert(std::pair<int, Sprite*>(id, Sprite::create(tempStr1)));
+			m_sprites[id]->retain();
 		}
 		//Load Button resource
 		readingFile >> tempStr1 >> tempStr1;
@@ -60,6 +61,7 @@ void ResourceManager::Load(std::string fileName)
 			readingFile >> tempStr2 >> tempStr2;
 			tempStr2.replace(0, 2, "res");
 			m_buttons.insert(std::pair<int, ui::Button*>(id, ui::Button::create(tempStr1, tempStr2)));
+			m_buttons[id]->retain();
 		}
 		//Load Font resource
 		readingFile >> tempStr1 >> tempStr1;
@@ -71,6 +73,7 @@ void ResourceManager::Load(std::string fileName)
 			readingFile >> tempStr1 >> tempStr1;
 			tempStr1.replace(0, 2, "res");
 			m_labels.insert(std::pair<int, Label*>(id, Label::createWithTTF("", tempStr1, 40)));
+			m_labels[id]->retain();
 		}
 		readingFile.close();
 	}
@@ -82,21 +85,15 @@ void ResourceManager::Load(std::string fileName)
 
 cocos2d::Sprite* ResourceManager::GetSpriteById(int id)
 {
-	auto sprite = m_sprites[id];
-	sprite->retain();
-	return sprite;
+	return m_sprites[id];
 }
 
 NS_CC::ui::Button* ResourceManager::GetButtonById(int id)
 {
-	auto button = m_buttons[id];
-	button->retain();
-	return button;
+	return m_buttons[id];
 }
 
 NS_CC::Label* ResourceManager::GetLabelById(int id)
 {
-	auto label = m_labels[id];
-	label->retain();
-	return label;
+	return m_labels[id];
 }
