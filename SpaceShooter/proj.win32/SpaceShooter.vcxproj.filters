@@ -29,6 +29,7 @@
     <ClCompile Include="..\Classes\Bullet.cpp" />
     <ClCompile Include="..\Classes\SpaceShip.cpp" />
     <ClCompile Include="..\Classes\Rock.cpp" />
+    <ClCompile Include="..\Classes\GameOverScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -48,6 +49,7 @@
     <ClInclude Include="..\Classes\Bullet.h" />
     <ClInclude Include="..\Classes\SpaceShip.h" />
     <ClInclude Include="..\Classes\Rock.h" />
+    <ClInclude Include="..\Classes\GameOverScene.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">

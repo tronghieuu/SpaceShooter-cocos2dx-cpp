@@ -19,7 +19,7 @@ ResourceManager* ResourceManager::GetInstance()
 
 ResourceManager::~ResourceManager()
 {
-	//something
+	
 }
 
 void ResourceManager::Init(const std::string &path)
