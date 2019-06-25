@@ -23,19 +23,19 @@ bool MainMenuScene::init()
 	background->setScale(visibleSize.width / background->getContentSize().width, visibleSize.height / background->getContentSize().height);
 	background->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
 	background->removeFromParent();
-	addChild(background, -5);
+	addChild(background, 0);
 
 	//Add logo
 	auto logo = ResourceManager::GetInstance()->GetSpriteById(1);
 	logo->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 3 * 2.2));
 	logo->removeFromParent();
-	addChild(logo, -3);
+	addChild(logo, 1);
 
 	//Add play button
 	auto playButton = ResourceManager::GetInstance()->GetButtonById(0);
 	playButton->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 3));
 	playButton->removeFromParent();
-	addChild(playButton, 0);
+	addChild(playButton, 2);
 	playButton->addClickEventListener([&](Ref* event) {
 		auto gotoNextScene = CallFunc::create([] {
 			Director::getInstance()->replaceScene(GamePlayScene::CreateScene());

@@ -8,6 +8,8 @@ class GamePlayScene :public cocos2d::Scene
 public:
 	static Scene* CreateScene();
 	virtual bool init();
+	void update(float deltaTime);
+
 
 	CREATE_FUNC(GamePlayScene);
 };

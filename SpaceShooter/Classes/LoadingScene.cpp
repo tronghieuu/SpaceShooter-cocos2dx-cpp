@@ -23,27 +23,27 @@ bool LoadingScene::init()
 	background->setScale(visibleSize.width / background->getContentSize().width, visibleSize.height / background->getContentSize().height);
 	background->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
 	background->removeFromParent();
-	addChild(background, -5);
+	addChild(background, 0);
 	
 	//Add loading label
 	auto loadingLabel = ResourceManager::GetInstance()->GetLabelById(0);
 	loadingLabel->setString("Loading...");
 	loadingLabel->setPosition(visibleSize.width / 2, visibleSize.height / 2.1);
 	loadingLabel->removeFromParent();
-	addChild(loadingLabel, -4);
+	addChild(loadingLabel, 1);
 	
 	//Add loading frame
 	loadingSprite = ResourceManager::GetInstance()->GetSpriteById(5);
 	loadingSprite->setPosition(visibleSize.width / 2, visibleSize.height/2.4);
 	loadingSprite->removeFromParent();
-	addChild(loadingSprite, 0);
+	addChild(loadingSprite, 3);
 
 	//Add progress bar
 	progressSprite = ResourceManager::GetInstance()->GetSpriteById(6);
 	progressSprite->setPosition(Vec2(loadingSprite->getPositionX() - loadingSprite->getBoundingBox().size.width / 2, visibleSize.height / 2.4));
 	progressSprite->setAnchorPoint(Vec2(0, 0.5));
 	progressSprite->removeFromParent();
-	addChild(progressSprite, -2);
+	addChild(progressSprite, 2);
 	
 	scheduleUpdate();
 
