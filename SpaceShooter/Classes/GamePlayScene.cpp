@@ -2,6 +2,7 @@
 #include "ResourceManager.h"
 #include "Rock.h"
 #include "SpaceShip.h"
+#include "GameOverScene.h"
 
 USING_NS_CC;
 
@@ -20,9 +21,9 @@ bool GamePlayScene::init()
 	timeCount = 0;
 	auto visibleSize = Director::getInstance()->getVisibleSize();
 
+	//Init vector rocks
 	for (int i = 0; i < 15; i++)
 	{
-		
 		m_rocks.push_back((MyObject*) new Rock(this));
 	}
 
@@ -33,6 +34,7 @@ bool GamePlayScene::init()
 	background->removeFromParent();
 	addChild(background, 0);
 
+	//Touch eventlistener for spaceship
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = CC_CALLBACK_2(GamePlayScene::onTouchBegan, this);
 	listener->onTouchEnded = CC_CALLBACK_2(GamePlayScene::onTouchEnded, this);
@@ -49,6 +51,7 @@ bool GamePlayScene::init()
 void GamePlayScene::update(float deltaTime)
 {
 	m_spaceship->Update(deltaTime);
+
 	if (timeCount >= 0.2)
 	{
 		GenerateRock();
@@ -58,12 +61,24 @@ void GamePlayScene::update(float deltaTime)
 	{
 		timeCount += deltaTime;
 	}
+
+	//Move all rocks that are visible
 	for (int i = 0; i < m_rocks.size(); i++)
 	{
 		if (m_rocks[i]->GetSprite()->isVisible())
 		{
 			m_rocks[i]->Update(deltaTime);
 		}
+	}
+
+	//Go to GameOverScene when spaceship hit a rock
+	m_spaceship->Collision(m_rocks);
+	if (!m_spaceship->GetSprite()->isVisible())
+	{
+		auto gotoGameOver = CallFunc::create([] {
+			Director::getInstance()->replaceScene(GameOverScene::CreateScene());
+		});
+		runAction(gotoGameOver);
 	}
 }
 

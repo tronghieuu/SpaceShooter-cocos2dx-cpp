@@ -18,7 +18,7 @@ public:
 	void Init();
 	void Update(float deltaTime);
 	void Shoot();
-	void Collision(std::vector<MyObject*>);
+	void Collision(std::vector<MyObject*> rock);
 };
 
 #endif

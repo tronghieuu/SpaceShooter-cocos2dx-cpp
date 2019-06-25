@@ -61,3 +61,15 @@ void SpaceShip::Shoot()
 		}
 	}
 }
+
+void SpaceShip::Collision(std::vector<MyObject*> rock)
+{
+	for (int i = 0; i < rock.size(); i++)
+	{
+		if (m_sprite->getBoundingBox().intersectsRect(rock[i]->GetSprite()->getBoundingBox()))
+		{
+			m_sprite->setVisible(false);
+			break;
+		}
+	}
+}
