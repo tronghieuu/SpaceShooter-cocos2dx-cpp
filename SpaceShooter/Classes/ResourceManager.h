@@ -23,6 +23,7 @@ public:
 	cocos2d::Sprite* GetSpriteById(int id);
 	NS_CC::ui::Button* GetButtonById(int id);
 	NS_CC::Label* GetLabelById(int id);
+	cocos2d::Sprite* DuplicateSprite(cocos2d::Sprite* sprite);
 };
 
 #endif

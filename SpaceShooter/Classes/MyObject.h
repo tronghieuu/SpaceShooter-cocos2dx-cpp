@@ -5,7 +5,7 @@
 
 class MyObject
 {
-private:
+protected:
 	cocos2d::Sprite* m_sprite;
 public:
 	MyObject();
