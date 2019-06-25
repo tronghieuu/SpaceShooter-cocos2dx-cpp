@@ -71,5 +71,15 @@ void SpaceShip::Collision(std::vector<MyObject*> rock)
 			m_sprite->setVisible(false);
 			break;
 		}
+		for (std::list<MyObject*>::iterator j = m_bullets.begin(); j != m_bullets.end(); j++)
+		{
+			if ((*j)->GetSprite()->getBoundingBox().intersectsRect(rock[i]->GetSprite()->getBoundingBox()))
+			{
+				rock[i]->GetSprite()->setVisible(false);
+				rock[i]->GetSprite()->setPositionY(Director::getInstance()->getVisibleSize().height);
+				break;
+			}
+		}
 	}
+
 }
