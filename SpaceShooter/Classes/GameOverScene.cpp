@@ -2,6 +2,7 @@
 #include "ResourceManager.h"
 #include "MainMenuScene.h"
 #include "GamePlayScene.h"
+#include <string>
 
 USING_NS_CC;
 
@@ -61,7 +62,7 @@ bool GameOverScene::init()
 	//Add your score label
 	auto yourScoreLabel = ResourceManager::GetInstance()->GetLabelById(0);
 	yourScoreLabel->setPosition(Vec2(visibleSize.width / 2, gameoverLabel->getPositionY() - gameoverLabel->getBoundingBox().size.height * 2));
-	yourScoreLabel->setString("Your Score: 3");
+	yourScoreLabel->setString("Your Score: " + std::to_string(UserDefault::getInstance()->getIntegerForKey("Score")));
 	yourScoreLabel->removeFromParent();
 	addChild(yourScoreLabel);
 

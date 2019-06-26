@@ -76,6 +76,8 @@ void GamePlayScene::update(float deltaTime)
 	m_spaceship->Collision(m_rocks);
 	if (!m_spaceship->GetSprite()->isVisible())
 	{
+		log("%d", m_spaceship->GetScore());
+		UserDefault::getInstance()->setIntegerForKey("Score", m_spaceship->GetScore());
 		auto gotoGameOver = CallFunc::create([] {
 			Director::getInstance()->replaceScene(GameOverScene::CreateScene());
 		});

@@ -12,6 +12,7 @@ SpaceShip::SpaceShip()
 
 SpaceShip::SpaceShip(Scene* scene)
 {
+	score = 0;
 	timeCount = 0;
 	Init();
 	for (int i = 0; i < 20; i++)
@@ -68,22 +69,31 @@ void SpaceShip::Collision(std::vector<MyObject*> rock)
 {
 	for (int i = 0; i < rock.size(); i++)
 	{
-		//Check spaceship hit rock
-		if (m_sprite->getBoundingBox().intersectsRect(rock[i]->GetSprite()->getBoundingBox()))
+		if (rock[i]->GetSprite()->isVisible())
 		{
-			m_sprite->setVisible(false);
-			break;
-		}
-		//Check bullet hit rock
-		for (std::list<MyObject*>::iterator j = m_bullets.begin(); j != m_bullets.end(); j++)
-		{
-			if ((*j)->GetSprite()->getBoundingBox().intersectsRect(rock[i]->GetSprite()->getBoundingBox()))
+			//Check spaceship hit rock
+			if (m_sprite->getBoundingBox().intersectsRect(rock[i]->GetSprite()->getBoundingBox()))
 			{
-				rock[i]->GetSprite()->setVisible(false);
-				rock[i]->GetSprite()->setPositionY(Director::getInstance()->getVisibleSize().height);
-				break;
+				m_sprite->setVisible(false);
+				return;
+			}
+			//Check bullet hit rock
+			for (std::list<MyObject*>::iterator j = m_bullets.begin(); j != m_bullets.end(); j++)
+			{
+				if ((*j)->GetSprite()->getBoundingBox().intersectsRect(rock[i]->GetSprite()->getBoundingBox()) && (*j)->GetSprite()->isVisible())
+				{
+					rock[i]->GetSprite()->setVisible(false);
+					(*j)->GetSprite()->setVisible(false);
+					score++;
+					return;
+				}
 			}
 		}
 	}
 
+}
+
+int SpaceShip::GetScore()
+{
+	return score;
 }
