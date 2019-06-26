@@ -13,7 +13,7 @@ ID: 5
 PATH: %s/Sprites/loading.png
 ID: 6
 PATH: %s/Sprites/progress.png
-#BUTTON 3
+#BUTTON 5
 ID: 0
 NORMAL_PATH: %s/Buttons/play_normal.png
 PRESSED_PATH: %s/Buttons/play_pressed.png
@@ -23,6 +23,12 @@ PRESSED_PATH: %s/Buttons/resume_pressed.png
 ID: 2
 NORMAL_PATH: %s/Buttons/home_normal.png
 PRESSED_PATH: %s/Buttons/home_pressed.png
+ID: 3
+NORMAL_PATH: %s/Buttons/pause_normal.png
+PRESSED_PATH: %s/Buttons/pause_pressed.png
+ID: 4
+NORMAL_PATH: %s/Buttons/exit_normal.png
+PRESSED_PATH: %s/Buttons/exit_pressed.png
 #FONT 2
 ID: 0
 PATH: %s/Fonts/MarkerFelt.ttf
