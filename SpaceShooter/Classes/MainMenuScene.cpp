@@ -38,7 +38,7 @@ bool MainMenuScene::init()
 	addChild(playButton, 2);
 	playButton->addClickEventListener([&](Ref* event) {
 		auto gotoNextScene = CallFunc::create([] {
-			Director::getInstance()->replaceScene(GamePlayScene::CreateScene());
+			Director::getInstance()->replaceScene(TransitionFadeDown::create(1, GamePlayScene::CreateScene()));
 		});
 		runAction(gotoNextScene);
 	});

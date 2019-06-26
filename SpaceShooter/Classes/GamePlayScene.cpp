@@ -43,12 +43,14 @@ bool GamePlayScene::init()
 
 	//Add spaceship sprite
 	m_spaceship = new SpaceShip(this);
+	m_spaceship->GetSprite()->setVisible(true);
 
 	//Add score label
-	scoreLabel = ResourceManager::GetInstance()->GetLabelById(1);
-	scoreLabel->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 3 * 2));
-	scoreLabel->setString("0");
-	scoreLabel->setColor(Color3B(206, 66, 244));
+	scoreLabel = ResourceManager::GetInstance()->GetLabelById(0);
+	scoreLabel->setPosition(Vec2(visibleSize.width, visibleSize.height));
+	scoreLabel->setString("Your Score: ");
+	scoreLabel->setColor(Color3B(255, 255, 255));
+	scoreLabel->setAnchorPoint(Vec2(1, 1));
 	scoreLabel->removeFromParent();
 	scoreLabel->setVisible(true);
 	addChild(scoreLabel, 6);
@@ -82,17 +84,17 @@ void GamePlayScene::update(float deltaTime)
 	}
 
 	//Update score
-	scoreLabel->setString(std::to_string(m_spaceship->GetScore()));
+	scoreLabel->setString("Your Score: " + std::to_string(m_spaceship->GetScore()));
 
 	//Go to GameOverScene when spaceship hit a rock
 	m_spaceship->Collision(m_rocks);
 	if (!m_spaceship->GetSprite()->isVisible())
 	{
 		scoreLabel->setVisible(false);
-		m_spaceship->GetSprite()->setVisible(true);
 		UserDefault::getInstance()->setIntegerForKey("Score", m_spaceship->GetScore());
 		auto gotoGameOver = CallFunc::create([] {
-			Director::getInstance()->replaceScene(GameOverScene::CreateScene());
+			Director::getInstance()->getRunningScene()->pause();
+			Director::getInstance()->replaceScene(TransitionCrossFade::create(2, GameOverScene::CreateScene()));
 		});
 		runAction(gotoGameOver);
 	}

@@ -19,23 +19,23 @@ ResourceManager* ResourceManager::GetInstance()
 
 ResourceManager::~ResourceManager()
 {
-	//Release m_sprites
-	for (register int i = 0; i < m_sprites.size(); i++)
-	{
-		m_sprites[i]->release();
-	}
+	////Release m_sprites
+	//for (register int i = 0; i < m_sprites.size(); i++)
+	//{
+	//	m_sprites[i]->release();
+	//}
 
-	//Release m_buttons
-	for (register int i = 0; i < m_buttons.size(); i++)
-	{
-		m_buttons[i]->release();
-	}
+	////Release m_buttons
+	//for (register int i = 0; i < m_buttons.size(); i++)
+	//{
+	//	m_buttons[i]->release();
+	//}
 
-	//Release m_labels
-	for (register int i = 0; i < m_labels.size(); i++)
-	{
-		m_labels[i]->release();
-	}
+	////Release m_labels
+	//for (register int i = 0; i < m_labels.size(); i++)
+	//{
+	//	m_labels[i]->release();
+	//}
 }
 
 void ResourceManager::Init(const std::string &path)

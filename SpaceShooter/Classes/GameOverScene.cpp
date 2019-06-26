@@ -29,6 +29,7 @@ bool GameOverScene::init()
 	//Add home button
 	auto homeButton = ResourceManager::GetInstance()->GetButtonById(2);
 	homeButton->setPosition(Vec2(visibleSize.width / 2 + homeButton->getBoundingBox().size.width, visibleSize.height / 3));
+	homeButton->setOpacity(0);
 	homeButton->removeFromParent();
 	addChild(homeButton, 1);
 	homeButton->addClickEventListener([&](Ref* event) {
@@ -42,6 +43,7 @@ bool GameOverScene::init()
 	auto replayButton = ResourceManager::GetInstance()->GetButtonById(1);
 	replayButton->setScale(0.69);
 	replayButton->setPosition(Vec2(visibleSize.width / 2 - replayButton->getBoundingBox().size.width, visibleSize.height / 3));
+	replayButton->setOpacity(0);
 	replayButton->removeFromParent();
 	addChild(replayButton, 2);
 	replayButton->addClickEventListener([&](Ref* event) {
@@ -52,18 +54,27 @@ bool GameOverScene::init()
 	});
 
 	//Add Gameover label
-	auto gameoverLabel = ResourceManager::GetInstance()->GetLabelById(1);
+	auto gameoverLabel = ResourceManager::GetInstance()->GetLabelById(0);
 	gameoverLabel->setPosition(visibleSize.width / 2, visibleSize.height / 1.5);
+	gameoverLabel->setVisible(true);
+	gameoverLabel->setAnchorPoint(Vec2(0.5, 0.5));
 	gameoverLabel->setString("GAME OVER");
+	gameoverLabel->setColor(Color3B(209, 18, 18));
 	gameoverLabel->removeFromParent();
 	addChild(gameoverLabel, 3);
 
 	//Add your score label
-	auto yourScoreLabel = ResourceManager::GetInstance()->GetLabelById(0);
+	auto yourScoreLabel = ResourceManager::GetInstance()->GetLabelById(1);
 	yourScoreLabel->setPosition(Vec2(visibleSize.width / 2, gameoverLabel->getPositionY() - gameoverLabel->getBoundingBox().size.height * 2));
 	yourScoreLabel->setString("Your Score: " + std::to_string(UserDefault::getInstance()->getIntegerForKey("Score")));
+	yourScoreLabel->setOpacity(0);
 	yourScoreLabel->removeFromParent();
-	addChild(yourScoreLabel);
+	addChild(yourScoreLabel, 4);
+
+	auto objectAppear = FadeIn::create(5);
+	yourScoreLabel->runAction(objectAppear);
+	homeButton->runAction(objectAppear->clone());
+	replayButton->runAction(objectAppear->clone());
 
 	return true;
 }
