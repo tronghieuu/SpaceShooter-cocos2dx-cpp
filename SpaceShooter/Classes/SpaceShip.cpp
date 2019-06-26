@@ -21,6 +21,11 @@ SpaceShip::SpaceShip(Scene* scene)
 	}
 	m_sprite->removeFromParent();
 	scene->addChild(m_sprite, 4);
+	//Add explosion effect
+	explosion = ParticleFire::create();
+	explosion->setPosition(Vec2(-100, -100));
+	explosion->setScale(0.5);
+	scene->addChild(explosion, 10);
 }
 
 SpaceShip::~SpaceShip()
@@ -84,6 +89,7 @@ void SpaceShip::Collision(std::vector<MyObject*> rock)
 				if ((*j)->GetSprite()->getBoundingBox().intersectsRect(rock[i]->GetSprite()->getBoundingBox()) && (*j)->GetSprite()->isVisible())
 				{
 					rock[i]->GetSprite()->setVisible(false);
+					explosion->setPosition(rock[i]->GetSprite()->getPosition());
 					(*j)->GetSprite()->setVisible(false);
 					score++;
 					return;

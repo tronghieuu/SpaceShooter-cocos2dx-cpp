@@ -12,6 +12,7 @@ private:
 	std::list<MyObject*> m_bullets;               //List bullets using for shooting rocks
 	float timeCount;                              //Couting time for generate bullet periodically
 	int score;                                    //Store amount of rocks that be hit by bullet
+	cocos2d::ParticleFire* explosion;
 public:
 	SpaceShip();
 	SpaceShip(cocos2d::Scene* scene);
