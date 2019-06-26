@@ -41,7 +41,6 @@ bool GameOverScene::init()
 
 	//Add replay button
 	auto replayButton = ResourceManager::GetInstance()->GetButtonById(1);
-	replayButton->setScale(0.69);
 	replayButton->setPosition(Vec2(visibleSize.width / 2 - replayButton->getBoundingBox().size.width, visibleSize.height / 3));
 	replayButton->setOpacity(0);
 	replayButton->setAnchorPoint(Vec2(0.5, 0.5));

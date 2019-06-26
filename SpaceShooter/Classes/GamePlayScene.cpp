@@ -69,7 +69,7 @@ bool GamePlayScene::init()
 	//Add resume button
 	resumeButton = ResourceManager::GetInstance()->GetButtonById(1);
 	resumeButton->setAnchorPoint(Vec2(0, 1));
-	resumeButton->setScale(0.5);
+	resumeButton->setScale(0.75);
 	resumeButton->setPosition(Vec2(0, visibleSize.height));
 	resumeButton->removeFromParent();
 	addChild(resumeButton, 7);
