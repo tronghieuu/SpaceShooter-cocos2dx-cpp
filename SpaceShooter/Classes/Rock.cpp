@@ -23,7 +23,9 @@ Rock::~Rock()
 void Rock::Init()
 {
 	int id = random(3, 6);
+	float scale = 30.0 / random(20, 30);
 	m_sprite = ResourceManager::GetInstance()->DuplicateSprite(ResourceManager::GetInstance()->GetSpriteById(id));
+	m_sprite->setScale(scale);
 	m_sprite->setVisible(false);
 	m_sprite->setAnchorPoint(Vec2(0.5, 0));
 }
