@@ -35,7 +35,7 @@ SpaceShip::~SpaceShip()
 
 void SpaceShip::Init()
 {
-	m_sprite = ResourceManager::GetInstance()->GetSpriteById(4);
+	m_sprite = ResourceManager::GetInstance()->GetSpriteById(7);
 	m_sprite->setAnchorPoint(Vec2(0.5, 1));
 	m_sprite->setPosition(Director::getInstance()->getVisibleSize().width / 2, m_sprite->getBoundingBox().size.height);
 }

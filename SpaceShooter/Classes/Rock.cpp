@@ -22,7 +22,8 @@ Rock::~Rock()
 
 void Rock::Init()
 {
-	m_sprite = ResourceManager::GetInstance()->DuplicateSprite(ResourceManager::GetInstance()->GetSpriteById(3));
+	int id = random(3, 6);
+	m_sprite = ResourceManager::GetInstance()->DuplicateSprite(ResourceManager::GetInstance()->GetSpriteById(id));
 	m_sprite->setVisible(false);
 	m_sprite->setAnchorPoint(Vec2(0.5, 0));
 }

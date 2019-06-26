@@ -1,4 +1,4 @@
-#SPRITE 7
+#SPRITE 10
 ID: 0
 PATH: %s/Sprites/background.png
 ID: 1
@@ -8,10 +8,16 @@ PATH: %s/Sprites/bullet.png
 ID: 3
 PATH: %s/Sprites/aestroid_dark.png
 ID: 4
-PATH: %s/Sprites/spaceship.png
+PATH: %s/Sprites/aestroid_brown.png
 ID: 5
-PATH: %s/Sprites/loading.png
+PATH: %s/Sprites/aestroid_gray.png
 ID: 6
+PATH: %s/Sprites/aestroid_gray_2.png
+ID: 7
+PATH: %s/Sprites/spaceship.png
+ID: 8
+PATH: %s/Sprites/loading.png
+ID: 9
 PATH: %s/Sprites/progress.png
 #BUTTON 5
 ID: 0

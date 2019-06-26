@@ -33,13 +33,13 @@ bool LoadingScene::init()
 	addChild(loadingLabel, 1);
 	
 	//Add loading frame
-	auto loadingSprite = ResourceManager::GetInstance()->GetSpriteById(5);
+	auto loadingSprite = ResourceManager::GetInstance()->GetSpriteById(8);
 	loadingSprite->setPosition(visibleSize.width / 2, visibleSize.height/2.4);
 	loadingSprite->removeFromParent();
 	addChild(loadingSprite, 3);
 
 	//Add progress bar
-	progressSprite = ResourceManager::GetInstance()->GetSpriteById(6);
+	progressSprite = ResourceManager::GetInstance()->GetSpriteById(9);
 	progressSprite->setPosition(Vec2(loadingSprite->getPositionX() - loadingSprite->getBoundingBox().size.width / 2, visibleSize.height / 2.4));
 	progressSprite->setAnchorPoint(Vec2(0, 0.5));
 	progressSprite->setScaleX(0.01);
