@@ -2,7 +2,6 @@
 #include "ResourceManager.h"
 #include "MainMenuScene.h"
 #include "GamePlayScene.h"
-#include <string>
 
 USING_NS_CC;
 

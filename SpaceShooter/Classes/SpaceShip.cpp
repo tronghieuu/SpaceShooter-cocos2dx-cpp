@@ -90,7 +90,6 @@ void SpaceShip::Collision(std::vector<MyObject*> rock)
 			}
 		}
 	}
-
 }
 
 int SpaceShip::GetScore()

@@ -12,6 +12,7 @@ private:
 	std::vector<MyObject*> m_rocks;                                     //list rocks wiil be droped down on scene periodically
 	float timeCount;                                                    //Counting time for generate rock
 	SpaceShip* m_spaceship;                                             //SpaceShip object
+	cocos2d::Label* scoreLabel;
 public:
 	static Scene* CreateScene();
 	virtual bool init();
