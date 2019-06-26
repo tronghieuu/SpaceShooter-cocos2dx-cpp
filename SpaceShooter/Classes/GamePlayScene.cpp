@@ -50,7 +50,8 @@ bool GamePlayScene::init()
 	scoreLabel->setString("0");
 	scoreLabel->setColor(Color3B(206, 66, 244));
 	scoreLabel->removeFromParent();
-	addChild(scoreLabel);
+	scoreLabel->setVisible(true);
+	addChild(scoreLabel, 6);
 
 	scheduleUpdate();
 
@@ -80,11 +81,15 @@ void GamePlayScene::update(float deltaTime)
 		}
 	}
 
+	//Update score
+	scoreLabel->setString(std::to_string(m_spaceship->GetScore()));
+
 	//Go to GameOverScene when spaceship hit a rock
 	m_spaceship->Collision(m_rocks);
-	scoreLabel->setString(std::to_string(m_spaceship->GetScore()));
 	if (!m_spaceship->GetSprite()->isVisible())
 	{
+		scoreLabel->setVisible(false);
+		m_spaceship->GetSprite()->setVisible(true);
 		UserDefault::getInstance()->setIntegerForKey("Score", m_spaceship->GetScore());
 		auto gotoGameOver = CallFunc::create([] {
 			Director::getInstance()->replaceScene(GameOverScene::CreateScene());

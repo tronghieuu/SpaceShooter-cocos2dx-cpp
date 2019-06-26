@@ -12,7 +12,7 @@ Bullet::Bullet(Scene* scene)
 {
 	speed = 5;
 	Init();
-	scene->addChild(m_sprite, 8);
+	scene->addChild(m_sprite, 5);
 }
 
 Bullet::~Bullet()
