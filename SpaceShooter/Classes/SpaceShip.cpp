@@ -74,6 +74,7 @@ void SpaceShip::Collision(std::vector<MyObject*> rock)
 			//Check spaceship hit rock
 			if (m_sprite->getBoundingBox().intersectsRect(rock[i]->GetSprite()->getBoundingBox()))
 			{
+				rock[i]->GetSprite()->setVisible(false);
 				m_sprite->setVisible(false);
 				return;
 			}
