@@ -43,6 +43,7 @@ bool GameOverScene::init()
 	auto replayButton = ResourceManager::GetInstance()->GetButtonById(1);
 	replayButton->setPosition(Vec2(visibleSize.width / 2 - replayButton->getBoundingBox().size.width, visibleSize.height / 3));
 	replayButton->setOpacity(0);
+	replayButton->setScale(1);
 	replayButton->setAnchorPoint(Vec2(0.5, 0.5));
 	replayButton->removeFromParent();
 	addChild(replayButton, 2);
