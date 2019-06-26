@@ -62,7 +62,7 @@ void ResourceManager::Load(std::string fileName)
 			id = std::stoi(tempStr1);
 			readingFile >> tempStr1 >> tempStr1;
 			tempStr1.replace(0, 2, "res");
-			m_sprites.insert(std::pair<int, Sprite*>(id, Sprite::create(tempStr1)));
+			m_sprites.insert(std::pair<int, Sprite*>(id, Sprite::create(AutoPolygon::generatePolygon(tempStr1))));
 			m_sprites[id]->retain();
 		}
 		//Load Button resource
