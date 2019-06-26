@@ -5,6 +5,7 @@
 #include "SpaceShip.h"
 #include <vector>
 #include "cocos2d.h"
+#include "ui/CocosGUI.h"
 
 class GamePlayScene :public cocos2d::Scene
 {
@@ -13,6 +14,8 @@ private:
 	float timeCount;                                                    //Counting time for generate rock
 	SpaceShip* m_spaceship;                                             //SpaceShip object
 	cocos2d::Label* scoreLabel;
+	cocos2d::ui::Button* pauseButton;
+	cocos2d::ui::Button* resumeButton;
 public:
 	static Scene* CreateScene();
 	virtual bool init();

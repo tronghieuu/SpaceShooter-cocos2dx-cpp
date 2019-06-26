@@ -55,8 +55,30 @@ bool GamePlayScene::init()
 	scoreLabel->setVisible(true);
 	addChild(scoreLabel, 6);
 
-	scheduleUpdate();
+	//Add pause button
+	pauseButton = ResourceManager::GetInstance()->GetButtonById(3);
+	pauseButton->setAnchorPoint(Vec2(0, 1));
+	pauseButton->setPosition(Vec2(0, visibleSize.height));
+	pauseButton->removeFromParent();
+	addChild(pauseButton, 9);
+	pauseButton->addClickEventListener([&](Ref* event) {
+		pauseButton->setVisible(false);
+		Director::getInstance()->getRunningScene()->pause();
+	});
 
+	//Add resume button
+	resumeButton = ResourceManager::GetInstance()->GetButtonById(1);
+	resumeButton->setAnchorPoint(Vec2(0, 1));
+	resumeButton->setScale(0.5);
+	resumeButton->setPosition(Vec2(0, visibleSize.height));
+	resumeButton->removeFromParent();
+	addChild(resumeButton, 7);
+	resumeButton->addClickEventListener([&](Ref* event) {
+		pauseButton->setVisible(true);
+		Director::getInstance()->getRunningScene()->resume();
+	});
+
+	scheduleUpdate();
 	return true;
 }
 

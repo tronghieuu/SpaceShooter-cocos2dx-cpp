@@ -44,6 +44,7 @@ bool GameOverScene::init()
 	replayButton->setScale(0.69);
 	replayButton->setPosition(Vec2(visibleSize.width / 2 - replayButton->getBoundingBox().size.width, visibleSize.height / 3));
 	replayButton->setOpacity(0);
+	replayButton->setAnchorPoint(Vec2(0.5, 0.5));
 	replayButton->removeFromParent();
 	addChild(replayButton, 2);
 	replayButton->addClickEventListener([&](Ref* event) {
