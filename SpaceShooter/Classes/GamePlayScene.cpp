@@ -116,17 +116,26 @@ void GamePlayScene::GenerateRock()
 
 bool GamePlayScene::onTouchBegan(Touch* touch, Event* event)
 {
-	m_spaceship->GetSprite()->setPosition(touch->getLocation());
-	return true;
+	if (m_spaceship->GetSprite()->getBoundingBox().containsPoint(touch->getLocation()))
+	{
+		return true;
+	}
+	return false;
 }
 
 bool GamePlayScene::onTouchEnded(Touch* touch, Event* event)
 {
-	m_spaceship->GetSprite()->setPosition(touch->getLocation());
-	return true;
+	if (m_spaceship->GetSprite()->getBoundingBox().containsPoint(touch->getLocation()))
+	{
+		return true;
+	}
+	return false;
 }
 
 void GamePlayScene::onTouchMoved(Touch* touch, Event* event)
 {
-	m_spaceship->GetSprite()->setPosition(touch->getLocation());
+	float x, y;
+	x = touch->getLocation().x - touch->getPreviousLocation().x;
+	y = touch->getLocation().y - touch->getPreviousLocation().y;
+	m_spaceship->GetSprite()->setPosition(Vec2(m_spaceship->GetSprite()->getPositionX() + x, m_spaceship->GetSprite()->getPositionY() + y));
 }

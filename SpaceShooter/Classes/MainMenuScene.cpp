@@ -31,6 +31,17 @@ bool MainMenuScene::init()
 	logo->removeFromParent();
 	addChild(logo, 1);
 
+	//Add exit button
+	auto exitButton = ResourceManager::GetInstance()->GetButtonById(4);
+	exitButton->setAnchorPoint(Vec2(1, 1));
+	exitButton->setPosition(Vec2(visibleSize.width, visibleSize.height));
+	exitButton->setScale(0.2);
+	exitButton->removeFromParent();
+	addChild(exitButton, 3);
+	exitButton->addClickEventListener([&](Ref* event) {
+		Director::getInstance()->end();
+	});
+
 	//Add play button
 	auto playButton = ResourceManager::GetInstance()->GetButtonById(0);
 	playButton->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 3));
@@ -41,17 +52,6 @@ bool MainMenuScene::init()
 			Director::getInstance()->replaceScene(TransitionFadeDown::create(1, GamePlayScene::CreateScene()));
 		});
 		runAction(gotoNextScene);
-	});
-
-	//Add exit button
-	auto exitButton = ResourceManager::GetInstance()->GetButtonById(4);
-	exitButton->setAnchorPoint(Vec2(1, 1));
-	exitButton->setPosition(Vec2(visibleSize.width, visibleSize.height));
-	exitButton->setScale(0.2);
-	exitButton->removeFromParent();
-	addChild(exitButton, 3);
-	exitButton->addClickEventListener([&](Ref* event) {
-		Director::getInstance()->end();
 	});
 
 	return true;
