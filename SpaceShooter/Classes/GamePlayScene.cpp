@@ -157,7 +157,10 @@ bool GamePlayScene::onTouchEnded(Touch* touch, Event* event)
 void GamePlayScene::onTouchMoved(Touch* touch, Event* event)
 {
 	float x, y;
-	x = touch->getLocation().x - touch->getPreviousLocation().x;
-	y = touch->getLocation().y - touch->getPreviousLocation().y;
-	m_spaceship->GetSprite()->setPosition(Vec2(m_spaceship->GetSprite()->getPositionX() + x, m_spaceship->GetSprite()->getPositionY() + y));
+	x = touch->getLocation().x - touch->getPreviousLocation().x + m_spaceship->GetSprite()->getPositionX();
+	y = touch->getLocation().y - touch->getPreviousLocation().y + m_spaceship->GetSprite()->getPositionY();
+	if (x >= 0 && y >= m_spaceship->GetSprite()->getBoundingBox().size.height/2 && x <= Director::getInstance()->getVisibleSize().width&&y <= Director::getInstance()->getVisibleSize().height)
+	{
+		m_spaceship->GetSprite()->setPosition(Vec2(x, y));
+	}
 }
