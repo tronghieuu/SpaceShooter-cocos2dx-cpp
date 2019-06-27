@@ -27,7 +27,6 @@ void Rock::Init()
 	m_sprite = ResourceManager::GetInstance()->DuplicateSprite(ResourceManager::GetInstance()->GetSpriteById(id));
 	m_sprite->setScale(scale);
 	m_sprite->setVisible(false);
-	m_sprite->setAnchorPoint(Vec2(0.5, 0));
 }
 
 void Rock::Update(float deltaTime)

@@ -2,7 +2,9 @@
 #include "ResourceManager.h"
 #include "MainMenuScene.h"
 #include "GamePlayScene.h"
+#include "SimpleAudioEngine.h"
 
+using namespace CocosDenshion;
 USING_NS_CC;
 
 Scene* GameOverScene::CreateScene()
@@ -72,10 +74,16 @@ bool GameOverScene::init()
 	yourScoreLabel->removeFromParent();
 	addChild(yourScoreLabel, 4);
 
+	//Add action FadeIn
 	auto objectAppear = FadeIn::create(5);
 	yourScoreLabel->runAction(objectAppear);
 	homeButton->runAction(objectAppear->clone());
 	replayButton->runAction(objectAppear->clone());
+
+	//Add sound 
+	auto gameoverSound = SimpleAudioEngine::getInstance();
+	gameoverSound->pauseBackgroundMusic();
+	//gameoverSound->playEffect("res/sounds/gameover", false);
 
 	return true;
 }

@@ -1,7 +1,9 @@
 #include "MainMenuScene.h"
 #include "ResourceManager.h"
 #include "GamePlayScene.h"
+#include "SimpleAudioEngine.h"
 
+using namespace CocosDenshion;
 USING_NS_CC;
 
 Scene* MainMenuScene::CreateScene()
@@ -41,6 +43,10 @@ bool MainMenuScene::init()
 	exitButton->addClickEventListener([&](Ref* event) {
 		Director::getInstance()->end();
 	});
+
+	//Add title sound
+	auto titleSound = SimpleAudioEngine::getInstance();
+	titleSound->playBackgroundMusic("res/sounds/title.mp3", true);
 
 	//Add play button
 	auto playButton = ResourceManager::GetInstance()->GetButtonById(0);

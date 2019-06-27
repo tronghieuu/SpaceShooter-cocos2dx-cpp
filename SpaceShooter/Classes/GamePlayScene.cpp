@@ -3,7 +3,9 @@
 #include "Rock.h"
 #include "SpaceShip.h"
 #include "GameOverScene.h"
+#include "SimpleAudioEngine.h"
 
+using namespace CocosDenshion;
 USING_NS_CC;
 
 Scene* GamePlayScene::CreateScene()
@@ -26,6 +28,11 @@ bool GamePlayScene::init()
 	{
 		m_rocks.push_back((MyObject*) new Rock(this));
 	}
+
+	//Pause title sound, add in game sound
+	auto ingameSound = SimpleAudioEngine::getInstance();
+	ingameSound->pauseBackgroundMusic();
+	ingameSound->playBackgroundMusic("res/sounds/ingame.mp3", true);
 
 	//Add background
 	auto background = ResourceManager::GetInstance()->GetSpriteById(0);
@@ -64,6 +71,8 @@ bool GamePlayScene::init()
 	pauseButton->addClickEventListener([&](Ref* event) {
 		pauseButton->setVisible(false);
 		Director::getInstance()->getRunningScene()->pause();
+		auto ingameSound = SimpleAudioEngine::getInstance();
+		ingameSound->pauseBackgroundMusic();
 	});
 
 	//Add resume button
@@ -76,6 +85,8 @@ bool GamePlayScene::init()
 	resumeButton->addClickEventListener([&](Ref* event) {
 		pauseButton->setVisible(true);
 		Director::getInstance()->getRunningScene()->resume();
+		auto ingameSound = SimpleAudioEngine::getInstance();
+		ingameSound->resumeBackgroundMusic();
 	});
 
 	scheduleUpdate();
@@ -130,7 +141,7 @@ void GamePlayScene::GenerateRock()
 		if (!m_rocks[i]->GetSprite()->isVisible())
 		{
 			m_rocks[i]->GetSprite()->setVisible(true);
-			m_rocks[i]->GetSprite()->setPosition(random(0, (int)visibleSize.width), visibleSize.height);
+			m_rocks[i]->GetSprite()->setPosition(random(0, (int)visibleSize.width), visibleSize.height + m_rocks[i]->GetSprite()->getBoundingBox().size.height / 2);
 			break;
 		}
 	}

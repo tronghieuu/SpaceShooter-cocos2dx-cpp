@@ -2,7 +2,10 @@
 #include "ResourceManager.h"
 #include "MyObject.h"
 #include "Bullet.h"
+#include <math.h>
+#include "SimpleAudioEngine.h"
 
+using namespace CocosDenshion;
 USING_NS_CC;
 
 SpaceShip::SpaceShip()
@@ -20,6 +23,7 @@ SpaceShip::SpaceShip(Scene* scene)
 		m_bullets.push_back((MyObject*) new Bullet(scene));
 	}
 	m_sprite->removeFromParent();
+	
 	scene->addChild(m_sprite, 4);
 	//Add explosion effect
 	explosion = ParticleFire::create();
@@ -65,6 +69,8 @@ void SpaceShip::Shoot()
 		{
 			(*i)->GetSprite()->setVisible(true);
 			(*i)->GetSprite()->setPosition(m_sprite->getPosition());
+			auto shootingSound = SimpleAudioEngine::getInstance();
+			shootingSound->playEffect("res/sounds/fire.wav", false);
 			break;
 		}
 	}
@@ -72,6 +78,34 @@ void SpaceShip::Shoot()
 
 void SpaceShip::Collision(std::vector<MyObject*> rock)
 {
+	//float distanceSpaceship, distanceBullet;
+	//for (int i = 0; i < rock.size(); i++)
+	//{
+	//	if (rock[i]->GetSprite()->isVisible())
+	//	{
+	//		distanceSpaceship = std::sqrt(std::pow(m_sprite->getPositionX() - rock[i]->GetSprite()->getPositionX(), 2) + std::pow(m_sprite->getPositionY() - rock[i]->GetSprite()->getPositionY(), 2));
+	//		//Check spaceship hit rock
+	//		if (distanceSpaceship <= m_sprite->getBoundingBox().size.width + rock[i]->GetSprite()->getBoundingBox().size.width&&rock[i]->GetSprite()->isVisible())
+	//		{
+	//			rock[i]->GetSprite()->setVisible(false);
+	//			m_sprite->setVisible(false);
+	//			return;
+	//		}
+	//		//Check bullet hit rock
+	//		for (std::list<MyObject*>::iterator j = m_bullets.begin(); j != m_bullets.end(); j++)
+	//		{
+	//			distanceBullet= std::sqrt(std::pow((*j)->GetSprite()->getPositionX() - rock[i]->GetSprite()->getPositionX(), 2) + std::pow((*j)->GetSprite()->getPositionY() - rock[i]->GetSprite()->getPositionY(), 2));
+	//			if (distanceBullet <= (*j)->GetSprite()->getBoundingBox().size.width + rock[i]->GetSprite()->getBoundingBox().size.width&&rock[i]->GetSprite()->isVisible())
+	//			{
+	//				rock[i]->GetSprite()->setVisible(false);
+	//				explosion->setPosition(rock[i]->GetSprite()->getPosition());
+	//				(*j)->GetSprite()->setVisible(false);
+	//				score++;
+	//				return;
+	//			}
+	//		}
+	//	}
+	//}
 	for (int i = 0; i < rock.size(); i++)
 	{
 		if (rock[i]->GetSprite()->isVisible())
